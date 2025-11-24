@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>School NCC Wing</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  :root {
+    --red: #D32F2F;
+    --deepblue: #0D47A1;
+    --lightblue: #64B5F6;
+    --gold: #FFCC00;
+    --white: #fff;
+    --black: #222;
+  }
+
+  * {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  /* Header bars and logo */
+  header {
+    position: relative;
+    width: 100%;
+    padding-top: 60px;
+    margin-bottom: 3rem;
+  }
+
+  .color-bars-container {
+    position: relative;
+    height: 45px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    user-select: none;
+  }
+
+  .color-bars {
+    flex: 1;
+    height: 9px;
+    border-radius: 3px;
+  }
+  .color-red {
+    background: var(--red);
+  }
+  .color-deepblue {
+    background: var(--deepblue);
+  }
+  .color-darkblue {
+    background: #002879;
+  }
+  .color-lightblue {
+    background: var(--lightblue);
+  }
+
+  .logo-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 90px;
+    background: var(--gold);
+    border-radius: 50%;
+    border: 3.5px solid var(--red);
+    box-shadow: 0 0 8px rgb(0 0 0 / 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .shield {
+    position: relative;
+    width: 60px;
+    height: 72px;
+    background: var(--deepblue);
+    border: 2.5px solid black;
+    border-radius: 0 0 10px 10px;
+    box-shadow: inset 0 0 8px rgb(0 0 0 / 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-family: 'Poppins', sans-serif;
+    color: transparent;
+  }
+  .stripe-left, .stripe-center, .stripe-right {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 33.33%;
+    border-right: 1.8px solid black;
+  }
+  .stripe-left {
+    left: 0;
+    background: var(--red);
+    border-top-left-radius: 10px;
+  }
+  .stripe-center {
+    left: 33.33%;
+    background: var(--deepblue);
+    border-right: 1.8px solid black;
+  }
+  .stripe-right {
+    left: 66.66%;
+    background: var(--lightblue);
+    border-top-right-radius: 10px;
+    border-right: none;
+  }
+  .shield-text {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7px;
+    user-select: none;
+    pointer-events: none;
+  }
+  .shield-text span {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1;
+    user-select: none;
+    text-shadow:
+      1px 1px 2px rgba(0,0,0,0.75),
+      0 0 4px rgba(255,255,255,0.6);
+  }
+  .shield-text .n {
+    color: gold;
+  }
+  .shield-text .c-blue {
+    color: var(--lightblue);
+  }
+  .shield-text .c-yellow {
+    color: gold;
+    margin-left: -5px;
+    margin-right: -4px;
+  }
+
+  /* Navigation */
+  nav {
+    background-color: var(--deepblue);
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+  }
+  nav .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  nav a {
+    color: var(--white);
+    font-weight: 600;
+    padding: 0.4rem 0.7rem;
+    display: inline-block;
+    border-radius: 3px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  nav a:hover,
+  nav a:focus {
+    background-color: var(--red);
+    color: var(--white);
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 1rem auto 3rem;
+    padding: 0 1rem;
+  }
+
+  /* Hero Section on Home */
+  .hero {
+    background: linear-gradient(90deg, var(--red), var(--deepblue), var(--lightblue));
+    color: var(--white);
+    text-align: center;
+    padding: 4rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
+  }
+  .hero h1 {
+    font-weight: 900;
+    font-size: 3rem;
+    letter-spacing: 2.3px;
+    margin-bottom: 1.2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  }
+  .hero p {
+    font-size: 1.4rem;
+    font-weight: 600;
+    max-width: 640px;
+    margin-left: auto; margin-right: auto;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  }
+
+  /* Motto block */
+  .motto {
+    margin: 3.5rem auto;
+    border-left: 6px solid var(--red);
+    padding-left: 1.2rem;
+    max-width: 700px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--deepblue);
+    user-select: none;
+    text-align: center;
+    letter-spacing: 1.2px;
+  }
+
+  /* Home info boxes */
+  .home-info {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 2rem;
+  }
+  .info-box {
+    background: var(--lightblue);
+    color: var(--deepblue);
+    border-radius: 10px;
+    padding: 1.3rem 1.6rem;
+    box-shadow: 0 5px 14px rgb(0 0 0 / 0.12);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .info-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .info-box h2 {
+    border-bottom: 3px solid var(--red);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+  }
+  .info-box p {
+    font-weight: 500;
+    font-size: 1.05rem;
+    line-height: 1.45;
+  }
+
+  /* About section */
+  .about-content h2 {
+    color: var(--red);
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+  .about-content h3 {
+    color: var(--deepblue);
+    margin-bottom: 0.7rem;
+  }
+  .about-content p, .about-content ul {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+    color: var(--deepblue);
+  }
+  .about-content ul {
+    list-style: disc inside;
+  }
+  .about-section {
+    margin-bottom: 3rem;
+  }
+
+.principal-section {
+  padding: 20px;
+  margin-top: 25px;
+  background: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+.principal-section h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+.principal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.principal-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  margin-bottom: 15px;
+}
+
+.principal-description {
+  font-size: 25px;
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.6;
+  color: #444;
+}
+
+
+  /* Activities */
+  .activities-section h2 {
+    color: var(--red);
+    margin-bottom: 1.8rem;
+    font-weight: 700;
+  }
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 1.8rem;
+  }
+  .event-card {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgb(0 0 0 / 0.14);
+    background: var(--white);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .event-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .event-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 3.5px solid var(--red);
+  }
+  .event-content {
+    padding: 1rem 1.4rem 1.4rem;
+  }
+  .event-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.45rem;
+    color: var(--deepblue);
+    font-weight: 700;
+  }
+  .event-content p {
+    font-size: 1rem;
+    color: var(--black);
+    line-height: 1.33;
+    font-weight: 500;
+  }
+
+  /* Cadets List section */
+  #cadets {
+    margin-top: 5rem;
+  }
+  #cadets h2 {
+    color: var(--red);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 2.5px;
+  }
+  .cadet-section {
+    margin-bottom: 3rem;
+    border-radius: 12px;
+    border: 2.5px solid var(--red);
+    padding: 1rem 2rem 2rem;
+    background: var(--lightblue);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cadet-section h3 {
+    color: var(--deepblue);
+    border-bottom: 3px solid var(--red);
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  .cadet-list {
+    list-style: none;
+    max-height: 280px;
+    overflow-y: auto;
+    padding-left: 0;
+    border: 1.8px solid var(--deepblue);
+    background: var(--white);
+    border-radius: 8px;
+  }
+  .cadet-list li {
+    padding: 0.56rem 1rem;
+    border-bottom: 1px solid var(--lightblue);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--black);
+    user-select: text;
+  }
+  .cadet-list li:last-child {
+    border-bottom: none;
+  }
+  /* Scrollbar styling for cadet list (WebKit browsers) */
+  .cadet-list::-webkit-scrollbar {
+    width: 8px;
+  }
+  .cadet-list::-webkit-scrollbar-track {
+    background: var(--lightblue);
+    border-radius: 8px;
+  }
+  .cadet-list::-webkit-scrollbar-thumb {
+    background-color: var(--deepblue);
+    border-radius: 8px;
+    border: 2px solid var(--lightblue);
+  }
+  
+  /* Fade in animation for cadet sections */
+  .cadet-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .cadet-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Footer */
+  footer {
+    background-color: var(--deepblue);
+    padding: 1.8rem 1rem;
+    color: var(--white);
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    user-select: none;
+    font-size: 0.92rem;
+  }
+  footer .footer-content span {
+    display: block;
+    margin-top: 0.4rem;
+    font-style: italic;
+    color: var(--lightblue);
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    nav ul {
+      flex-direction: column;
+      gap: 0.8rem;
+      padding: 0.5rem 0;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+    }
+    .color-bars-container {
+      gap: 6px;
+      height: 36px;
+    }
+    .color-bars {
+      height: 7.5px;
+    }
+    .logo-wrapper {
+      width: 120px;
+      height: 72px;
+      border-width: 2.6px;
+    }
+    .shield-text span {
+      font-size: 20px;
+    }
+    .cadet-section {
+      padding: 1rem 1rem 2rem;
+      margin: 0 0.8rem 2.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="color-bars-container" aria-hidden="true" role="presentation">
+    <div class="color-bars color-red"></div>
+    <div class="color-bars color-deepblue"></div>
+    <div class="color-bars color-darkblue"></div>
+    <div class="color-bars color-lightblue"></div>
+  </div>
+<div class="logo-wrapper">
+  <img src="Images\Logo.png" alt="NCC Logo" style="
+        width: 140%;
+        height: 140%;
+        object-fit: cover;
+        border-radius: 50%;
+    ">
+</div>
+
+</header>
+
+<nav aria-label="Primary Navigation">
+  <div class="container">
+    <ul>
+      <li><a href="#home" class="nav-link" tabindex="0">Home</a></li>
+      <li><a href="#about" class="nav-link" tabindex="0">About NCC</a></li>
+      <li><a href="#activities" class="nav-link" tabindex="0">Activities</a></li>
+      <li><a href="#cadets" class="nav-link" tabindex="0">Cadets List</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <!-- Home Section -->
+  <section id="home" tabindex="-1" aria-label="Home page">
+    <div class="hero">
+      <h1>School National Cadet Corps Wing</h1>
+      <p>Discipline, Unity, and Service to the Nation</p>
+    </div>
+
+    <blockquote class="motto" aria-label="NCC Motto">“Unity and Discipline”</blockquote>
+
+    <div class="home-info">
+      <article class="info-box" role="region" aria-labelledby="vision-title">
+        <h2 id="vision-title">Our Vision</h2>
+        <p>To develop disciplined and patriotic youth who are ready to serve the nation with dedication and honor.</p>
+      </article>
+      <article class="info-box" role="region" aria-labelledby="motto-title">
+        <h2 id="motto-title">NCC Motto</h2>
+        <p>The National Cadet Corps motto is "Unity and Discipline" which inspires cadets to uphold these values in all walks of life.</p>
+      </article>
+      <article class="info-box" role="region" aria-labelledby="intro-title">
+        <h2 id="intro-title">About Our Unit</h2>
+        <p>Our school's NCC unit fosters leadership, patriotism, and social responsibility through regular training, camps, and community engagement.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- About NCC -->
+  <section id="about" tabindex="-1" aria-label="About NCC" style="margin-top:5rem;">
+    <div class="about-content">
+      <h2>About NCC</h2>
+
+      <section class="about-section" aria-labelledby="history-title">
+        <h3 id="history-title">Brief History</h3>
+        <p>The National Cadet Corps (NCC) is the Indian military cadet corps with its roots tracing back to the British-era University Corps established in 1917. Formally established post-independence in 1948, NCC has evolved to become a premier youth organization in schools and colleges.</p>
+      </section>
+      
+      <section class="about-section" aria-labelledby="objectives-title">
+        <h3 id="objectives-title">Objectives</h3>
+        <ul>
+          <li>To develop character, comradeship, discipline and a secular outlook among youth.</li>
+          <li>To provide basic military training to cadets.</li>
+          <li>To create a pool of motivated youth to provide leadership in all walks of life.</li>
+        </ul>
+      </section>
+
+      <section class="about-section" aria-labelledby="benefits-title">
+        <h3 id="benefits-title">Benefits for Cadets</h3>
+        <ul>
+          <li>Leadership skills and confidence building.</li>
+          <li>Adventure camps and opportunities to participate in national events.</li>
+          <li>Civil awareness, fitness, and social service exposure.</li>
+          <li>Enhanced career prospects in armed forces and other government sectors.</li>
+        </ul>
+      </section>
+    </div>
+  </section>
+
+      <!-- Principal Section -->
+      <section class="principal-section" aria-labelledby="principal-title">
+        <h3 id="principal-title">Our Principal</h3>
+
+        <div class="principal-container">
+          <img src="Images\Principal.jpg" alt="Principal" class="principal-img">
+
+          <p class="principal-description">
+            <b>Iqbal Higher Secondary School Principal, Smt Raseena A, the pillar of strength and constant support to our NCC Unit.<b>
+          </p>
+        </div>
+      </section>
+
+
+  <!-- Activities -->
+  <section id="activities" tabindex="-1" aria-label="NCC activities and events" style="margin-top:5rem;">
+    <h2 class="activities-section">Our Activities</h2>
+    <div class="events-grid" aria-live="polite" aria-relevant="additions">
+
+      <article class="event-card" tabindex="0" aria-label="NCC Unity Run">
+        <img src="Images\run 1.jpg" alt="NCC Unity Run" />
+        <img src="Images\run 2.jpg" alt="NCC Unity Run" />
+        <div class="event-content">
+          <h3>NCC Unity Run</h3>
+          <p>The Unity Run was successfully conducted at Iqbal HSS on November 20, 2025, as part of the NCC 
+                 Day celebrations.The event commenced with the Principal's inaugural address, followed by the 
+                 Headmistress's felicitiations. She advised the cadets to prioritize their safety during th run.
+                 Two ANOs, Captian Jyothi K Nair and First Officer Nazim A R,guided the cadets during the run,
+                 which covered a considerable distance. A total of 44 cadets, comprising 24 first-year and 20
+                 second-year cadets, participated in the event.</p>
+        </div>
+      </article>
+
+      <article class="event-card" tabindex="0" aria-label="Community Service">
+        <img src="https://images.unsplash.com/photo-1603209986903-d3a11d2870c8?auto=format&fit=crop&w=400&q=70" alt="Cadets participating in community service activity" />
+        <div class="event-content">
+          <h3>Community Service</h3>
+          <p>Cadets engage in various social service activities, fostering social responsibility and empathy.</p>
+        </div>
+      </article>
+
+      <article class="event-card" tabindex="0" aria-label="Recognition and Awards">
+        <img src="Images\Training.jpg" alt="Training of Cadets" />
+        <div class="event-content">
+          <h3>Training Camp</h3>
+          <p>NCC cadets actively participating in their regular training sessions, during which they 
+                 enhance their physical fitness, engage in adventure activities, and practice essential 
+                 military skills. Such training programs play a vital role in fostering discipline, teamwork,
+                 and confidence among the cadets, while preparing them to face future challenges with
+                  resilience and determination.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Cadets List -->
+  <section id="cadets" tabindex="-1" aria-label="Cadets List of +1 and +2 sections">
+    <h2>Cadets List</h2>
+
+    <div class="cadet-section" aria-labelledby="plusone-title">
+      <h3 id="plusone-title">+1 Cadets</h3>
+      <ul class="cadet-list" aria-label="List of +1 cadets">
+        <li>1) Abdulla N S</li>
+        <li>2) Devanandhan V S</li>
+        <li>3) Vivek S Krishna</li>
+        <li>4) Muhammad Hisham M</li>
+        <li>5) Vivek Krishna R S</li>
+        <li>6) Albin R S</li>
+        <li>7) Athul Krishnan A R</li>
+        <li>8) A R Goutham Krishna</li>
+        <li>9) Pranav A B</li>
+        <li>10) Adarsh B S</li>
+        <li>11) Adwaith S</li>
+        <li>12) Sourav S</li>
+        <li>13) Abhay Raj A</li>
+        <li>14) Pranav Nair</li>
+        <li>15) Sarath S S</li>
+        <li>16) Dilna Fathima S</li>
+        <li>17) Sreenanda S S</li>
+        <li>18) Rose Marian</li>
+        <li>19) Abhirami R</li>
+        <li>20) Thraya K</li>
+        <li>21) Adheena U S</li>
+        <li>22) S Nasriya</li>
+        <li>23) Adrija P A</li>
+        <li>24) Adithya Krishna A S</li>
+        <li>25) Nuzha Shareer</li>
+      </ul>
+    </div>
+
+    <div class="cadet-section" aria-labelledby="plustwo-title">
+      <h3 id="plustwo-title">+2 Cadets</h3>
+      <ul class="cadet-list" aria-label="List of +2 cadets">
+        <li>1) Abhiram S R</li>
+        <li>2) Vaishnav S</li>
+        <li>3) Karthikeyan S A</li>
+        <li>4) Arathi Krishna A</li>
+        <li>5) Sandra S Kumar</li>
+        <li>6) Akshay Krishnan S</li>
+        <li>7) Jasna J</li>
+        <li>8) Devikrishna D B</li>
+        <li>9) Nidhina S Babu</li>
+        <li>10) VAishnav J</li>
+        <li>11) Muhammad A H</li>
+        <li>12) Asiya Fathima A S</li>
+        <li>13) Fathima Sulthana N S</li>
+        <li>14) Aswani R B</li>
+        <li>15) Anantha Bhadra M</li>
+        <li>16) Aliya Fathima A S</li>
+        <li>17) Akshara V R</li>
+        <li>18) Anwar Hussain A</li>
+        <li>19) Sanjay S S</li>
+        <li>20) Aromal A S</li>
+        <li>21) Kesav B Nair</li>
+        <li>22) Ebrahim Badusha M</li>
+        <li>23) Alan M S</li>
+        <li>24) Govardhan R Raj</li>
+        <li>25) Muhammed Nasif N</li>
+        <li>26) Roshin</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div>© 2025-27 Iqbal HSS - NCC Wing</div>
+    <span>“Unity and Discipline”</span>
+    <div>Contact: ncc@schooldomain.edu | Phone: +123 456 7890</div>
+  </div>
+</footer>
+
+<script>
+  // Fade in on scroll for specified elements
+  const faders = document.querySelectorAll('.info-box, .event-card, .cadet-section');
+
+  const appearOptions = {
+    threshold: 0.25,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    });
+  }, appearOptions);
+
+  faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+  });
+
+  // Smooth scrolling for nav links
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      if(link.hash !== '') {
+        e.preventDefault();
+        const targetID = link.hash.substring(1);
+        const targetElement = document.getElementById(targetID);
+        if(targetElement) {
+          targetElement.scrollIntoView({behavior: "smooth"});
+          targetElement.focus({preventScroll:true});
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
